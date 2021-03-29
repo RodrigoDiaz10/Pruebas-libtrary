@@ -1,0 +1,39 @@
+<mat-accordion>
+  
+    <!--PUSE EL NOMBRE DEL FOMRULARIO-->
+    <mat-form-field class="example-form-field">
+      <mat-label>Nombre del Formulario</mat-label>
+      <input matInput type="text" #titulo [(ngModel)]="value" maxlength="50" placeholder="Ej. Tesis">
+      <mat-hint align="end">{{titulo.value.length}} / 50</mat-hint>
+      <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <!-- BORRARA SI NO VALE EL FORMULARIO-->
+  
+    <mat-expansion-panel hideToggle *ngFor="let data of datas">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{data.name}} hjhj
+        </mat-panel-title>
+        <mat-panel-description>
+          {{data.description}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>{{data.tipo}}</p> 
+      <!--<mat-form-field appearance="fill">
+        <mat-label>Tipo de Pregunta</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>-->
+      <button mat-raised-button color="primary" (click)="onPreUpdateField(datas)">Editar</button>
+      <button mat-raised-button color="primary" (click)="onNoClick()">Borrar</button>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="onNoClick()">Finalizar</button>
+    <button mat-raised-button color="primary" (click)="resetForm()">Agregar Campo</button>
+  </div>

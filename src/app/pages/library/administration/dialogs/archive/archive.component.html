@@ -1,0 +1,28 @@
+<div class="example-container">
+    <p>
+      <mat-form-field class="example-form-field" class="form-archive" #formarchive  >
+        <mat-label>{{!this._libraryServices.selectedField.id ? 'Nueva Pregunta' : 'Actualizar Pregunta'}}</mat-label>
+        <input type="hidden" id="fieldId" name="fieldId" class="form-control" [(ngModel)]="this._libraryServices.selectedField.id">
+        <input matInput type="text" #description [(ngModel)]="this._libraryServices.selectedField.description" maxlength="50" placeholder="Ej. Tesis">
+        <mat-hint align="end">{{this._libraryServices.selectedField.description.length}} / 50</mat-hint>
+        <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      </p>
+      <p>
+  <!-- AQUI TOCA TERMINAR EL SELECT Y PROBAR-->
+      <mat-form-field appearance="fill">
+          <mat-label>Tipo de Pregunta</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let food of foods" [value]="food.value">
+              {{food.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+      <div mat-dialog-actions>
+        <button mat-raised-button color="primary" (click)="onNoClick()">Cancelar</button>
+        <button mat-raised-button color="primary" (click)="onSaveArchive(formarchive)">Guardar</button>
+      </div>
+    </div>

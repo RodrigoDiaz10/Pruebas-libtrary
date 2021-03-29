@@ -1,0 +1,45 @@
+<h1 mat-dialog-title>Wenas</h1>
+<div mat-dialog-content>
+  
+  <div  *ngFor="let pregunta of preguntas">
+
+    <form class="example-form"  ><!-- cambiar con el valor del select-->
+
+      <div *ngIf="pregunta.numero == 1">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>{{pregunta.nombre}}</mat-label>
+          <input fxFlex="100%" matInput placeholder="Ex. Pizza">
+        </mat-form-field>
+      </div>
+
+      <div *ngIf="pregunta.numero == 2">
+        <mat-form-field color="accent" appearance="outline">
+          <mat-label>{{pregunta.nombre}}</mat-label>
+          <input matInput [matDatepicker]="dp3" disabled>
+          <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+          <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div *ngIf="pregunta.numero == 3">
+        <mat-form-field appearance="outline">
+          <mat-label>{{pregunta.nombre}}</mat-label>
+          <textarea matInput></textarea>
+        </mat-form-field>
+      </div>
+<!--image/png,image/jpeg-->
+     <div *ngIf="pregunta.numero == 0">
+       <input accept="application/pdf" #foto required id="fotos" multiple type="file">
+     </div>
+  
+  
+
+    
+    </form>
+
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+</div>

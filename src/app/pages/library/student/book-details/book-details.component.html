@@ -1,0 +1,84 @@
+<!--<div fxLayout="23" fxLayout.md="row">
+    <mat-toolbar color="primary" class="navibar" fxFlex="auto">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with trash icon" mat-button
+        (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Library</span>
+      <span class="example-spacer"></span>
+      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon"
+        style="padding-right: 10%;">
+        Login <mat-icon>account_circle</mat-icon>
+      </button>
+    </mat-toolbar>
+  </div>-->
+
+
+  <mat-drawer-container class="example-container" autosize [hasBackdrop]="true">
+
+<!--
+    <mat-drawer #drawer class="example-sidenav" mode="push">
+      <mat-selection-list #shoes [multiple]="false">
+        <mat-list-option *ngFor="let shoe of typesOfShoes" [value]="shoe">
+          {{shoe}}
+        </mat-list-option>
+      </mat-selection-list>
+  
+      <p>
+        Option selected: {{shoes.selectedOptions.selected[0]?.value}}
+      </p>
+    </mat-drawer>-->
+
+
+
+
+  <mat-card>
+    <mat-grid-list cols="2" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="32px" fxFill>
+      <mat-grid-tile>
+        <div class="izquierda">
+  
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAjXTjnE590FF9LVFqmN_Vus4zWusL6K36hQ&usqp=CAU">
+        </div>
+        <br>
+      </mat-grid-tile>
+      <mat-grid-tile class="detalles" style="align-items: center; justify-content: center;">
+        <br><br>
+
+        <h1 class="mat-display-2">Nombre del Libro</h1>
+        <mat-card-subtitle>
+          <mat-icon>date_range</mat-icon> nombre
+        </mat-card-subtitle>
+        <mat-card-subtitle>
+          <mat-icon>perm_identity</mat-icon> algo
+        </mat-card-subtitle>
+        <mat-card-subtitle>
+          <mat-icon>book</mat-icon> something
+        </mat-card-subtitle>
+        <strong>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis amet a, ex officiis nostrum veniam, nobis eaque at tempora perferendis assumenda esse quibusdam cumque quam est! Veritatis aut expedita dicta?</strong>
+        <mat-chip-list>
+          <mat-chip color="warn" selected>
+            <mat-icon>check</mat-icon>
+            Se ha apartado el libro 
+          </mat-chip>
+        </mat-chip-list>
+        <button  class="carrito" mat-raised-button color="accent">
+          <mat-icon>remove</mat-icon>
+          Desapartarlo
+        </button>
+        <button class="carrito" mat-raised-button color="accent">
+          <mat-icon>add</mat-icon>
+          Apartar libro
+        </button>
+        <a class="comprar" mat-raised-button color="primary">
+          <mat-icon>save_alt</mat-icon>
+           Descargar
+        </a>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card>
+
+
+  </mat-drawer-container>
+
+
+
