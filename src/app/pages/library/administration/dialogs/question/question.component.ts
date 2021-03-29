@@ -7,6 +7,7 @@ import { ArchiveComponent } from '../archive/archive.component';
 import { Field } from 'app/models/library/field';
 import { NgForm } from '@angular/forms';
 import { LibraryStructureService } from 'app/services/library/library-structure.service';
+import { LibraryFieldService } from 'app/services/library/library-field.service';
 
 /**       DIALOGO      */
 export interface DialogData {
@@ -55,7 +56,8 @@ export class QuestionComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData, 
               public dialogRef: MatDialogRef<QuestionComponent>,
               public dialog: MatDialog,
-              private _libraryServices: LibraryStructureService ){
+              private _libraryServices: LibraryStructureService, 
+              private library: LibraryFieldService){
 
 
               //this.role = JSON.parse(localStorage.getItem('role')) as Role;
@@ -146,6 +148,11 @@ resetForm(fieldForm?: NgForm): void {
     name:'',
     state: ''
   };
+  this.library.selectedField ={
+    id: null,
+    description: '',
+    state: ''
+  }
 }
 
 

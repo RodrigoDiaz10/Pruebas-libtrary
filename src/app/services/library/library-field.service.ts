@@ -16,15 +16,15 @@ export class LibraryFieldService {
 
     
     public async getField() {
-      return await this.http.get("/api/person");
+      return await this.http.get("/api/field");
     }
      public async deleteField(idField) {
-      return await this.http.delete("/api/personD/".concat(idField));
+      return await this.http.delete("/api/field/".concat(idField));
     }
     public async postField(field: Field) {
-      return await this.http.post("/api/person", field);
+      return await this.http.post("/api/field", field);
     }
     public async editField(idField,field: Field) {
-      return await this.http.update("/api/person/".concat(idField),field);
+      return await this.http.update("/api/field/".concat(idField),field);
     }
 }
