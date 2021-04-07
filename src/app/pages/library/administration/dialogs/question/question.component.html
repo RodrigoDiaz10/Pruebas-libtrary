@@ -2,7 +2,7 @@
   
     <!--PUSE EL NOMBRE DEL FOMRULARIO-->
     <mat-form-field class="example-form-field">
-      <mat-label>Nombre del Formulario</mat-label>
+      <mat-label>Nombre de la Estructura</mat-label>
       <input matInput type="text" #titulo [(ngModel)]="value" maxlength="50" placeholder="Ej. Tesis">
       <mat-hint align="end">{{titulo.value.length}} / 50</mat-hint>
       <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">

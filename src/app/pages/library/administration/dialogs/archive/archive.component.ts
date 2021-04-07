@@ -1,15 +1,13 @@
+import { state } from '@angular/animations';
 import { LibraryService } from './../../../../../services/library/library.service';
 import { Component, Inject, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogData } from '../question/question.component';
 import { LibraryFieldService } from 'app/services/library/library-field.service';
 
 
-interface Food {
-  value: string;
-  viewValue: string;
-}
+
 
 
 @Component({
@@ -24,34 +22,54 @@ export class ArchiveComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  formArchive: FormGroup;
+
   constructor(public dialogRef: MatDialogRef<ArchiveComponent>,
               @Inject(MAT_DIALOG_DATA) public data: DialogData, 
               public dialog: MatDialog,
-              public _libraryServices: LibraryFieldService) { }
+              public _libraryServices: LibraryFieldService,
+              private formBuilder: FormBuilder
+              ) { 
+                this.buildFormArchive();
+                this.formArchive.patchValue(this._libraryServices.selectedField)
+                /*
+                  this.formArchive.patchValue({//si no tiene la misma estructura
+                  id:this._libraryServices.selectedField.id, //llenando el fomrulario
+                  decription:this._libraryServices.selectedField.description
+                })
+                */
+              }
 
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-    foods: Food[] = [
-    {value: 'text', viewValue: 'Texto'},
-    {value: 'number', viewValue: 'Numero'},
-    {value: 'date', viewValue: 'Fecha'},
-    {value: 'longText', viewValue: 'Texto Largo'}
-  ];
+  buildFormArchive(){
+    this.formArchive=this.formBuilder.group({
+      id:[null],//valor por defecto, 
+      description:['',Validators.required, Validators.maxLength(20)],
+      state:['',[Validators.required, Validators.minLength]]//si es una validacicion tener un Validators
+    });
+  }
 
-
-  onSaveArchive(archiveForm: NgForm): void{
-    if(archiveForm.value.id == null){
+  onSaveArchive(): void{
+    console.log(this.formArchive.value)
+    if(this.formArchive.valid){// is es valido da true
       //nuevo
-      this._libraryServices.postField(archiveForm.value);
+      if(this.formArchive.controls['id'].value== null){
+       this._libraryServices.postField(this.formArchive.value);
+      }
+      
     } else{
       //actualizar
-      this._libraryServices.editField(archiveForm.value.id, archiveForm.value);
+      //this._libraryServices.editField(formarchive.value.id, formarchive.value);
+      this.formArchive.markAllAsTouched()//activar los errores que hay
     }
 
   }
+
+  
 
 
 }

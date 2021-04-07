@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -60,6 +61,9 @@ import { AppRoutingModule } from './app-routing.module';
 
         //Routing
         AppRoutingModule,
+
+        //ReactiveForms
+        ReactiveFormsModule
     ],
     bootstrap   : [
         AppComponent

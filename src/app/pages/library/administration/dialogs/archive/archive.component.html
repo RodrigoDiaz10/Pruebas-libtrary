@@ -1,28 +1,65 @@
-<div class="example-container">
-    <p>
-      <mat-form-field class="example-form-field" class="form-archive" #formarchive  >
-        <mat-label>{{!this._libraryServices.selectedField.id ? 'Nueva Pregunta' : 'Actualizar Pregunta'}}</mat-label>
-        <input type="hidden" id="fieldId" name="fieldId" class="form-control" [(ngModel)]="this._libraryServices.selectedField.id">
-        <input matInput type="text" #description [(ngModel)]="this._libraryServices.selectedField.description" maxlength="50" placeholder="Ej. Tesis">
-        <mat-hint align="end">{{this._libraryServices.selectedField.description.length}} / 50</mat-hint>
-        <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-          <mat-icon>close</mat-icon>
-        </button>
-      </mat-form-field>
-      </p>
-      <p>
-  <!-- AQUI TOCA TERMINAR EL SELECT Y PROBAR-->
-      <mat-form-field appearance="fill">
-          <mat-label>Tipo de Pregunta</mat-label>
-          <mat-select>
-            <mat-option *ngFor="let food of foods" [value]="food.value">
-              {{food.viewValue}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </p>
-      <div mat-dialog-actions>
-        <button mat-raised-button color="primary" (click)="onNoClick()">Cancelar</button>
-        <button mat-raised-button color="primary" (click)="onSaveArchive(formarchive)">Guardar</button>
+<!-- QUITAR LOS CAMPS CON EL MAT FORM Y HACERLE SOLO CON EL HTML FORM -->
+<!--<div class="example-container">
+  <form [formGroup]="formArchive" (ngSubmit)="onSaveArchive()">
+    <mat-form-field class="example-form-field" class="form-archive" >
+    <mat-label>{{!this._libraryServices.selectedField.id ? 'Nueva Pregunta' : 'Actualizar Pregunta'}}</mat-label>
+    <input  id="id" name="id" class="form-control"
+    formControlName="id">
+    <input matInput type="text" id="description"
+      formControlName="description" maxlength="50" placeholder="Ej. Tesis"
+      name="description">
+      <div *ngIf="formArchive.get('description').errors"><!--si hat errores-->
+        <!--buscar errores- ->
+        <div *ngIf="formArchive.get('description').hasError('required')" >
+          <!--capturar errores- ->
+          este capo es required
+        </div>
       </div>
+      </mat-form-field>
+     
+    <mat-hint align="end">{{this._libraryServices.selectedField.description.length}} / 50</mat-hint>
+    <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+      <mat-icon>close</mat-icon>
+    </button>
+    <div mat-dialog-actions>
+      <button mat-raised-button color="primary" (click)="onNoClick()">Cancelar</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="formArchive.invalid">Guardar</button>
     </div>
+  </form>
+</div>
+-->
+<div class="example-container">
+  <form  [formGroup]="formArchive" (ngSubmit)="onSaveArchive()">
+    <mat-label *ngIf="formArchive.get('id')" style="font-size: medium;">{{formArchive.get('id')? 'Nueva Pregunta' : 'Actualizar Pregunta'}}</mat-label>
+
+<br>
+    <mat-form-field class="example-form-field" class="form-archive" >
+
+      <input type="hidden" id="id" name="id" class="form-control" formControlName="id">
+
+      <input matInput type="text" 
+             id="description" 
+             formControlName="description" 
+             maxlength="20" 
+             placeholder="Nombre del campo" 
+             name="description">
+
+      <mat-hint align="end">{{formArchive.get('description').value.length}} / 20</mat-hint>
+      <mat-error *ngIf="formArchive.get('description').errors && formArchive.get('description').touched">Este capo es requerido</mat-error> 
+      <mat-error *ngIf="formArchive.get('description').hasError('maxlength')">muy largo</mat-error>
+        <div *ngIf="formArchive.get('description').errors"><!--si hat errores-->
+          <!--buscar errores-->
+          <div *ngIf="formArchive.get('description').hasError('required').touched" >
+            <!--capturar errores  NO CARGA EL VALOSR DEL  CAMPO-->
+          </div>
+        </div>
+        </mat-form-field>
+  <p>
+    
+  </p>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="onNoClick()">Cancelar</button>
+    <button mat-raised-button color="primary" [disabled]="formArchive.valid" type="submit">Guardar</button>
+  </div>
+</form>
+</div>
